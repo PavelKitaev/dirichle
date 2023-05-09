@@ -24,27 +24,6 @@ void FillingTheMatrix(double* matrix, int size) {
     }
 }
 
-void CheckRes(double* a, double* b, int size, double eps) {
-    bool check = true;
-    long double a_sum = 0;
-    long double b_sum = 0;
-    
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            a_sum += a[i * size + j];
-            b_sum += b[i * size + j];
-        }
-    }
-    
-    a_sum = a_sum / (size*size);
-    b_sum = b_sum / (size*size);
-    
-    if (fabs(a_sum - b_sum) > eps)
-        check = false;
-    
-    std::cout << "SUM A: " << a_sum << ", SUM B: " << b_sum << std::endl;
-}
-
 void ParallelAlgTBB(double* matrix, int size, double eps, int th_num) {
     oneapi::tbb::global_control global_limit(oneapi::tbb::global_control::max_allowed_parallelism, th_num);
     

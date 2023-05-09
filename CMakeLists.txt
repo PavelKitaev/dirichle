@@ -2,7 +2,6 @@ cmake_minimum_required( VERSION 3.2 )
 
 project(diplom)
 message( STATUS "Solution of the Dirichlet problem for the Poisson equation" )
-include( cmake/Git.cmake )
 include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Configure.cmake" )
 
 ################################ MPI ################################

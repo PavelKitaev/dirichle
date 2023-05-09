@@ -9,11 +9,19 @@ if ( USE_STD )
 
     set(PACK_LIB "${ProjectId}_lib")
     add_library(${PACK_LIB} STATIC ${ALL_SOURCE_FILES} )
-
+    
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+    
     add_executable( ${ProjectId} ${ALL_SOURCE_FILES} )
 
     target_link_libraries(${ProjectId} ${PACK_LIB})
     target_link_libraries(${ProjectId} Threads::Threads)
+    
+    if(OpenMP_CXX_FOUND)
+        target_link_libraries(${ProjectId} OpenMP::OpenMP_CXX)
+    else( )
+       message( STATUS "-- ${ProjectId} - NOT OpenMP!"  )
+    endif()
 
 else( USE_STD )
     message( STATUS "-- ${ProjectId} - NOT BUILD!"  )
